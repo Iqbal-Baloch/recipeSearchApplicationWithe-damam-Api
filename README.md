@@ -1,10 +1,12 @@
-# Getting Started with Create React App
+# Recipe search application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## using edamam api
 
-## Available Scripts
+note: to run this you need to get api id and api key from  https://developer.edamam.com/edamam-docs-recipe-api-v1
 
-In the project directory, you can run:
+
+![1](https://user-images.githubusercontent.com/75010563/215428369-e4d6aaba-5ebb-494b-bfa2-d80c103cd10c.png)
+![2](https://user-images.githubusercontent.com/75010563/215428379-69ec15cb-7bbc-40d6-8825-c963b6cd3d13.png)
 
 ### `npm start`
 
