@@ -1,23 +1,43 @@
-import logo from './logo.svg';
+import { Card } from './Card';
+
+import { useEffect, useState } from 'react';
 import './App.css';
 
-function App() {
+const App = () =>{
+  // note get api_id and api key from "https://developer.edamam.com/edamam-docs-recipe-api-v1"
+  const API_ID = "" ;
+  const API_KEY = "" ;
+  const [searchTerm, setSearchTerm] = useState("") ;
+  const [data, setdata] = useState([]); 
+  function handleSubmit (e) {
+    getData(searchTerm);
+    e.preventDefault(); 
+    
+  }
+
+  const getData = async (searchTerm) => {
+    const response = await fetch(`https://api.edamam.com/search?q=${searchTerm}&app_id=${API_ID}&app_key=${API_KEY}`);
+    const json = await response.json() ;
+    setdata(json.hits);
+    console.log(json.hits)
+  }
+
+  useEffect(() =>{
+    getData("") ;
+  }, [])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <form onSubmit= {handleSubmit} className='search-form'>
+        <input className='search-input' type="text" value={searchTerm} onChange={(e)=> setSearchTerm(e.target.value)} />
+        <button className='search-button' type="submit">Search</button>
+      </form>
+      <div className='container'>
+        {data.map((d, a) => {
+        return <Card key={a} data={d}  />
+        })}
+      </div>
+      
     </div>
   );
 }
